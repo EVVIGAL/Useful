@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+
+namespace LINQ
+{
+	internal class Program
+	{
+		static void Main(string[] args)
+		{
+			List<int> list = new List<int>() { 51, 22, 73, 54, 91 };
+
+			foreach (int i in list)
+				Console.Write(" " + i);
+
+			list = SelectionSort(list);
+			Console.WriteLine("   ");
+
+			foreach (int i in list)
+				Console.Write(" " + i);
+
+		}
+
+		static List<int> SelectionSort(List<int> list)
+		{
+			List<int> newList = new List<int>();
+			int cycles = list.Count;
+
+			for (int i = 0; i < cycles; i++)
+			{
+				int smallest = FindSmallest(list);
+				newList.Add(list[smallest]);
+				list.RemoveAt(smallest);
+			}
+
+			return newList;
+		}
+
+		static int FindSmallest(List<int> list)
+		{
+			int smallestNumber = list[0];
+			int smallestNumberIndex = 0;
+
+			for (int i = 1; i < list.Count; i++)
+			{
+				if (list[i] < smallestNumber)
+				{
+					smallestNumber = list[i];
+					smallestNumberIndex = i;
+				}
+			}
+
+			return smallestNumberIndex;
+		}
+	}
+}
