@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+
+namespace LINQ
+{
+	internal class Program
+	{
+		static void Main(string[] args)
+		{
+			List<int> list = new List<int>() { 80 };
+			List<int> newList = new();
+
+			foreach (int i in list)
+				Console.Write(i + " ");
+
+			newList = QuickSort(list);
+			Console.WriteLine();
+
+			foreach (int i in newList)
+				Console.Write(i + " ");
+		}
+
+		static List<int> QuickSort(List<int> list)
+		{
+			if (list.Count < 2)
+			{
+				return list;
+			}
+			else
+			{
+				int pivot = list[0];
+				List<int> less = new();
+				List<int> greater = new();
+
+				for (int i = 1; i < list.Count; i++)
+					if (list[i] <= pivot)
+						less.Add(list[i]);
+
+				for (int i = 1; i < list.Count; i++)
+					if (list[i] > pivot)
+						greater.Add(list[i]);
+
+				list = QuickSort(less);
+				list.Add(pivot);
+				list.AddRange(QuickSort(greater));
+				return list;
+			}
+		}
+	}
+}
