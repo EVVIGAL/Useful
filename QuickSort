@@ -7,16 +7,15 @@ namespace LINQ
 	{
 		static void Main(string[] args)
 		{
-			List<int> list = new List<int>() { 80 };
-			List<int> newList = new();
+			List<int> list = new List<int>() { 80, 56, 24, 92, 102};
 
 			foreach (int i in list)
 				Console.Write(i + " ");
 
-			newList = QuickSort(list);
+			list = QuickSort(list);
 			Console.WriteLine();
 
-			foreach (int i in newList)
+			foreach (int i in list)
 				Console.Write(i + " ");
 		}
 
